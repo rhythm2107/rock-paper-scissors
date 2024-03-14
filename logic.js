@@ -44,12 +44,24 @@ function playGame() {
     for (let i = 1; i <= 5; i++) {
         let result = playRound(getPrompt(), getComputerChoice())
         if (result === 'draw') {
-            console.log("A tie!")
+            console.log(`A tie! The score is ${p_score} - ${c_score}`)
         } else if (result === 'win') {
+            p_score++
             console.log(`You won this round! The score is ${p_score} - ${c_score}`)
+        } else {
+            c_score++
+            console.log(`You lost this round! The score is ${p_score} - ${c_score}`)
         }
-        console.log(``)
     }
+    
+    if (p_score > c_score) {
+        console.log(`Congratulations! You won with a score of ${p_score} - ${c_score}`)
+    } else if (p_score < c_score) {
+        console.log(`Better luck next time! You lost with a score of ${p_score} - ${c_score}`)
+    } else {
+        console.log(`What a tough match! You tied with a score of ${p_score} - ${c_score}`)
+    }
+
 }
 
     // dictionary of what beats what -> {rock: scissors, scissors: paper, paper: rock}
