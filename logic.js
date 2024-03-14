@@ -7,6 +7,10 @@ function getComputerChoice() {
     return choices[getRandomInt(3)]
 }
 
+function getPrompt() {
+    return prompt("Choose rock, paper or scissors!")
+}
+
 function playRound(playerSelection, computerSelection) {
     
     let p_choice = playerSelection.toLowerCase();
@@ -21,16 +25,32 @@ function playRound(playerSelection, computerSelection) {
     let print_c_choice = c_choice.charAt(0).toUpperCase() + c_choice.slice(1)
 
     if (p_choice === c_choice) {
-        console.log('It\'s a draw!')
+        console.log(`It\'s a draw! Computer picked ${print_c_choice}!`)
+        return 'draw'
     } else if (winDictionary[p_choice] === c_choice) {
         console.log(`You won! ${print_p_choice} beats ${print_c_choice}!`)
+        return 'win'
     } else {
         console.log(`You lose! ${print_c_choice} beats ${print_p_choice}!`)
+        return 'lose'
     }
+}
+// console.log(playRound(getPrompt(), getComputerChoice()))
 
-    console.log(winDictionary['rock'])
-    console.log(winDictionary['scissors'])
-    console.log(winDictionary['paper'])
+function playGame() {
+    p_score = 0
+    c_score = 0
+
+    for (let i = 1; i <= 5; i++) {
+        let result = playRound(getPrompt(), getComputerChoice())
+        if (result === 'draw') {
+            console.log("A tie!")
+        } else if (result === 'win') {
+            console.log(`You won this round! The score is ${p_score} - ${c_score}`)
+        }
+        console.log(``)
+    }
+}
 
     // dictionary of what beats what -> {rock: scissors, scissors: paper, paper: rock}
     // testing with playerchoice of rock
@@ -42,4 +62,3 @@ function playRound(playerSelection, computerSelection) {
     // DICT = {rock: scissors, scissors: paper, paper: rock}
     // IF DICT[p_choice] === c_choice -> return player win
     // ELSE -> return player lose
-}
