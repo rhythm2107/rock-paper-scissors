@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script rel="javascript" src="./logic.js"></script>
-    <title>Document</title>
+    <title>Interactive Game Buttons</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="button-container">
-        <button class="flex-button">
-            <img class="fire" src="fire.png" alt="fire">
-            Button 1</button>
+    <div id="start-info" class="centered-content">
+        <p>Welcome to our game! Click the button below to choose your game mode.</p>
+        <button onclick="startGame()" class="start-button">Start Game</button>
+    </div>
+    <div id="button-container" class="centered-content" style="display: none;">
+        <button class="flex-button">Button 1</button>
         <button class="flex-button">Button 2</button>
         <button class="flex-button">Button 3</button>
     </div>
-    <h1>This project at the moment is console mode only!</h1>
-    <p>Open Chrome Dev Tools (F12) and go to Console tab. Use command playGame() to play rock paper scissors!</p>
 </body>
 </html>

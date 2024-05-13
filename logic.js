@@ -63,3 +63,12 @@ function playGame() {
     }
 
 }
+
+function startGame() {
+    var info = document.getElementById('start-info');
+    var buttonContainer = document.getElementById('button-container');
+
+    // Hide the initial game info and show the buttons
+    info.style.display = 'none';
+    buttonContainer.style.display = 'flex';
+}
