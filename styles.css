@@ -37,3 +37,16 @@
 .flex-button:hover {
     background-color: #ccc;
 }
+
+.fire-image {
+    width: 74px;  /* Set the desired width of the button */
+    height: 155px; /* Set the desired height of the button */
+    border: none;  /* Optional: Removes the border */
+    padding: 0;    /* Removes padding to ensure image fits exactly */
+    background-image: url('fire.jpg');
+    background-size: cover;  /* Ensures the image covers the entire button */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    color: transparent; /* Makes the text transparent if not needed */
+    cursor: pointer; /* Indicates this is a clickable button */
+}
