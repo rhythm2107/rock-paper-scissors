@@ -1,0 +1,22 @@
+.button-container {
+    display: flex;
+    justify-content: space-around; /* This will space the buttons evenly */
+    align-items: center; /* This will vertically center the buttons in the container */
+    height: 100vh; /* Makes the container take the full height of the viewport */
+}
+
+.flex-button {
+    padding: 20px 40px; /* Adds padding inside the buttons */
+    font-size: 24px; /* Increases the font size */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over the buttons */
+    transition: background-color 0.3s; /* Smooth transition for background color change */
+}
+
+.flex-button:hover {
+    background-color: #ccc; /* Color change on hover */
+}
+
+.fire {
+    width: 100px;
+    height: 100px;
+}
