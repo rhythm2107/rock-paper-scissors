@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,25 @@
     <title>Interactive Game Buttons</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div id="start-info" class="centered-content">
         <p>Welcome to our game! Click the button below to choose your game mode.</p>
         <button class="start-button">Start Game</button>
     </div>
-    <div class="player-score">Player Score: 0</div>
-    <div class="computer-score">Computer Score: 0</div>
+
+    <div class="scoreboard">
+        <div class="player-score">Player Score: 0</div>
+        <div class="computer-score">Computer Score: 0</div>
+    </div>
+    
     <div class="game-message">Game messages appear here.</div>
+
     <div id="button-container" class="centered-content" style="display: none;">
         <button class="flex-button fire">Rock</button>
         <button class="flex-button water">Paper</button>
         <button class="flex-button grass">Scissors</button>
     </div>
 </body>
+
 </html>

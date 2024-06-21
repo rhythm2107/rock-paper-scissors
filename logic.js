@@ -12,10 +12,6 @@ function startGame() {
     buttonContainer.style.display = 'flex';
 }
 
-function playGame(choice) {
-    console.log(choice)
-}
-
 let p_score = 0;
 let c_score = 0;
 let roundsPlayed = 0;
@@ -43,17 +39,23 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function playGame(choice) {
+    const playerScoreDiv = document.querySelector('.player-score');
+    const computerScoreDiv = document.querySelector('.computer-score');
+    const gameMessageDiv = document.querySelector('.game-message');
+
     if (roundsPlayed < 5) {
         let result = playRound(choice, getComputerChoice())
 
         if (result === 'draw') {
-            console.log(`A tie! The score is ${p_score} - ${c_score}`)
+            gameMessageDiv.textContent = `A tie! The score is ${p_score} - ${c_score}`
         } else if (result === 'win') {
-            p_score++
-            console.log(`You won this round! The score is ${p_score} - ${c_score}`)
+            p_score++;
+            playerScoreDiv.textContent = `Player Score: ${p_score}`;
+            gameMessageDiv.textContent = `You won this round! The score is ${p_score} - ${c_score}`
         } else {
-            c_score++
-            console.log(`You lost this round! The score is ${p_score} - ${c_score}`)
+            c_score++;
+            computerScoreDiv.textContent = `Computer Score: ${c_score}`;
+            gameMessageDiv.textContent = `You lost this round! The score is ${p_score} - ${c_score}`
         }
         roundsPlayed++;
         if (roundsPlayed === 5) {
@@ -64,10 +66,10 @@ function playGame(choice) {
 
 function evaluateFinalScore() {
     if (p_score > c_score) {
-        console.log(`Congratulations! You won with a score of ${p_score} - ${c_score}`);
+        gameMessageDiv.textContent = `Congratulations! You won with a score of ${p_score} - ${c_score}`;
     } else if (p_score < c_score) {
-        console.log(`Better luck next time! You lost with a score of ${p_score} - ${c_score}`);
+        gameMessageDiv.textContent = `Better luck next time! You lost with a score of ${p_score} - ${c_score}`;
     } else {
-        console.log(`What a tough match! You tied with a score of ${p_score} - ${c_score}`);
+        gameMessageDiv.textContent = `What a tough match! You tied with a score of ${p_score} - ${c_score}`;
     }
 }

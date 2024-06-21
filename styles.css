@@ -50,3 +50,9 @@
     color: transparent; /* Makes the text transparent if not needed */
     cursor: pointer; /* Indicates this is a clickable button */
 }
+
+.scoreboard {
+    display: flex;
+    border: solid 1px green;
+    align-items: center;
+}
