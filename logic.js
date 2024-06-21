@@ -11,6 +11,12 @@ function getPrompt() {
     return prompt("Choose rock, paper or scissors!")
 }
 
+function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"]
+    let randomIndex = Math.floor(Math.random() * choices.length)
+    return choices[randomIndex]
+}
+
 function playRound(playerSelection, computerSelection) {
     
     let p_choice = playerSelection.toLowerCase();
@@ -37,12 +43,12 @@ function playRound(playerSelection, computerSelection) {
 }
 // console.log(playRound(getPrompt(), getComputerChoice()))
 
-function playGame() {
+function playGame(choice) {
     p_score = 0
     c_score = 0
 
     for (let i = 1; i <= 5; i++) {
-        let result = playRound(getPrompt(), getComputerChoice())
+        let result = playRound(choice, getComputerChoice())
         if (result === 'draw') {
             console.log(`A tie! The score is ${p_score} - ${c_score}`)
         } else if (result === 'win') {
@@ -71,4 +77,13 @@ function startGame() {
     // Hide the initial game info and show the buttons
     info.style.display = 'none';
     buttonContainer.style.display = 'flex';
+    playGame()
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var button = document.querySelector('.flex-button');
+    
+    button.addEventListener('click', function() {
+        playRound('rock')
+    });
+});
