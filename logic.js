@@ -1,12 +1,3 @@
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max)
-}
-
-function getComputerChoice() {
-    const choices = ["rock", "paper", "scissors"]
-    return choices[getRandomInt(3)]
-}
-
 function getPrompt() {
     return prompt("Choose rock, paper or scissors!")
 }
