@@ -4,12 +4,17 @@ function getComputerChoice() {
     return choices[randomIndex]
 }
 function startGame() {
-    var info = document.getElementById('start-info');
-    var buttonContainer = document.getElementById('button-container');
+    let info = document.getElementById('start-info');
+    let buttonContainer = document.getElementById('button-container');
+    let scoreboard = document.querySelector('.scoreboard');
+    let gameMessage = document.querySelector('.game-message');
 
     // Hide the initial game info and show the buttons
     info.style.display = 'none';
+    scoreboard.style.display = 'flex';
+    gameMessage.style.display = 'block';
     buttonContainer.style.display = 'flex';
+
 }
 
 let p_score = 0;

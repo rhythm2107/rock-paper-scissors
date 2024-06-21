@@ -54,5 +54,18 @@
 .scoreboard {
     display: flex;
     border: solid 1px green;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 100px;
+    font-size: 50px;
+}
+
+.hide {
+    display: none;
+}
+
+.game-message {
+    border: solid 1px orange;
+    text-align: center;
+    margin-top: 50px;
 }
