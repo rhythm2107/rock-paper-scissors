@@ -43,24 +43,36 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
+function addGameMessage(message) {
+    var messageDiv = document.querySelector('.game-message');
+    var newMessage = document.createElement("div");
+    newMessage.textContent = message;
+    newMessage.style.padding = "2px";
+    messageDiv.appendChild(newMessage);
+
+    messageDiv.scrollTop = messageDiv.scrollHeight;
+}
+
 function playGame(choice) {
     const playerScoreDiv = document.querySelector('.player-score');
     const computerScoreDiv = document.querySelector('.computer-score');
-    const gameMessageDiv = document.querySelector('.game-message');
 
     if (roundsPlayed < 5) {
         let result = playRound(choice, getComputerChoice())
 
         if (result === 'draw') {
-            gameMessageDiv.textContent = `A tie! The score is ${p_score} - ${c_score}`
+            let drawMessage = `A tie! The score is ${p_score} - ${c_score}`
+            addGameMessage(drawMessage)
         } else if (result === 'win') {
             p_score++;
             playerScoreDiv.textContent = `Player Score: ${p_score}`;
-            gameMessageDiv.textContent = `You won this round! The score is ${p_score} - ${c_score}`
+            let winMessage = `You won this round! The score is ${p_score} - ${c_score}`
+            addGameMessage(winMessage)
         } else {
             c_score++;
             computerScoreDiv.textContent = `Computer Score: ${c_score}`;
-            gameMessageDiv.textContent = `You lost this round! The score is ${p_score} - ${c_score}`
+            let loseMessage = `You lost this round! The score is ${p_score} - ${c_score}`
+            addGameMessage(loseMessage)
         }
         roundsPlayed++;
         if (roundsPlayed === 5) {
@@ -70,11 +82,15 @@ function playGame(choice) {
 }
 
 function evaluateFinalScore() {
+    let victoryMessage = `Congratulations! You won with a score of ${p_score} - ${c_score}`
+    let defeatMessage = `Better luck next time! You lost with a score of ${p_score} - ${c_score}`
+    let tieMessage = `What a tough match! You tied with a score of ${p_score} - ${c_score}`
+
     if (p_score > c_score) {
-        gameMessageDiv.textContent = `Congratulations! You won with a score of ${p_score} - ${c_score}`;
+        addGameMessage(victoryMessage)
     } else if (p_score < c_score) {
-        gameMessageDiv.textContent = `Better luck next time! You lost with a score of ${p_score} - ${c_score}`;
+        addGameMessage(defeatMessage)
     } else {
-        gameMessageDiv.textContent = `What a tough match! You tied with a score of ${p_score} - ${c_score}`;
+        addGameMessage(tieMessage)
     }
 }

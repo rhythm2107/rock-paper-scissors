@@ -68,4 +68,14 @@
     border: solid 1px orange;
     text-align: center;
     margin-top: 50px;
+    overflow-y: scroll;
+    height: 150px;
+    max-height: 150px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
 }
