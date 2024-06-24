@@ -171,3 +171,7 @@
     font-size: 18px;
     margin-bottom: 0px;
 }
+
+.underlined-message {
+    text-decoration: underline;
+}

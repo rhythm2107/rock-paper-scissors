@@ -19,8 +19,8 @@ function startGame() {
 let p_score = 0;
 let c_score = 0;
 let roundsPlayed = 0;
-let setCount = 0;
-let firstSetEnabled = false;
+let setCount = 1;
+let setMessageDisplayed = false;
 
 document.querySelector('.fire').addEventListener('click', () => playGame('rock'));
 document.querySelector('.water').addEventListener('click', () => playGame('paper'));
@@ -43,7 +43,12 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function addGameMessage(message, isImportant = false, isColoredRed = false, isColoredGreen = false, isColoredGray = false) {
+function addGameMessage(message, 
+    isImportant = false,
+    isColoredRed = false,
+    isColoredGreen = false,
+    isColoredGray = false,
+    isUnderlined = false) {
     var messageDiv = document.querySelector('.game-message');
     var newMessage = document.createElement("div");
     var messageContent = document.createElement("span");
@@ -66,8 +71,12 @@ function addGameMessage(message, isImportant = false, isColoredRed = false, isCo
         messageContent.classList.add('colored-message-gray')
     }
 
+    if (isUnderlined) {
+        messageContent.classList.add('underlined-message')
+    }
+
     // Example of checking content to apply a highlight style
-    if (message.includes('Set')) {
+    if (message.includes('-= Set')) {
         messageContent.classList.add('highlight-message');
     }
 
@@ -80,9 +89,9 @@ function playGame(choice) {
     const playerScoreDiv = document.querySelector('.player-score');
     const computerScoreDiv = document.querySelector('.computer-score');
 
-    if (setCount === 0 && firstSetEnabled === false) {
+    if (setCount === 1 && setMessageDisplayed === false) {
         addGameMessage('-= Set 1 =-')
-        firstSetEnabled = true
+        setMessageDisplayed = true
     }
 
     if (roundsPlayed < 7) {
@@ -110,18 +119,22 @@ function playGame(choice) {
 }
 
 function evaluateFinalScore() {
-    let victoryMessage = `Congratulations! You won with a score of ${p_score} - ${c_score}`
-    let defeatMessage = `Better luck next time! You lost with a score of ${p_score} - ${c_score}`
-    let tieMessage = `What a tough match! You tied with a score of ${p_score} - ${c_score}`
+    let victoryMessage = `Congratulations! You won Set ${setCount} with a score of ${p_score} - ${c_score}!`
+    let defeatMessage = `Better luck next time! You lost Set ${setCount} with a score of ${p_score} - ${c_score}!`
+    let tieMessage = `What a tough match! You tied Set ${setCount} with a score of ${p_score} - ${c_score}!`
 
     if (p_score > c_score) {
-        addGameMessage(victoryMessage)
+        addGameMessage(victoryMessage, false, false, false, false, true)
     } else if (p_score < c_score) {
-        addGameMessage(defeatMessage)
+        addGameMessage(defeatMessage, false, false, false, false, true)
     } else {
-        addGameMessage(tieMessage)
+        addGameMessage(tieMessage, false, false, false, false, true)
     }
 
-    addGameMessage('\n')
-    addGameMessage('Round ended with score')
+    // Reset global variables and increment setCount to prepare for next set
+    setMessageDisplayed = false;
+    p_score = 0;
+    c_score = 0;
+    roundsPlayed = 0;
+    setCount++;
 }
