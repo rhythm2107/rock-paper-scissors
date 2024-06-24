@@ -127,9 +127,25 @@ function playGame(choice) {
 }
 
 function endGame() {
+    var buttons = document.querySelectorAll('.flex-button')
+
+    buttons.forEach((button) => {
+        button.disabled = true;
+    })
+
     appendEmptyLine()
-    message = 'The battle has come to an end'
-    addGameMessage(message, false, false, false, false, false, true)
+
+    if (p_set_score > c_set_score) {
+        addGameMessage('CONGRATULATIONS, YOU WON!', false, false, false, false, false, true)
+    }
+    else if (p_set_score < c_set_score) {
+        addGameMessage('BOOO, YOU LOST!', false, false, false, false, false, true)
+    } else {
+        addGameMessage('MEH, A TIE!', false, false, false, false, false, true)
+    }
+
+    message = 'Buttons have been blocked, refresh the website to play again!'
+    addGameMessage(message, true, false, false, false, false, false)
 }
 
 
@@ -154,9 +170,7 @@ function evaluateFinalScore() {
     }
 
     if (setCount === 5) {
-        addGameMessage('this is the end here')
         endGame()
-        // also here execute function (to be written) that disables buttons and asks for refresh
     }
 
     // Reset global variables and increment setCount to prepare for next set
