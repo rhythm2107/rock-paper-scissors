@@ -1,3 +1,7 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
 .centered-content {
     display: flex;
     flex-direction: column;
@@ -56,7 +60,6 @@
 
 .scoreboard {
     display: flex;
-    border: solid 1px green;
     justify-content: space-evenly;
     align-items: flex-end;
     height: 100px;
@@ -72,8 +75,8 @@
     text-align: center;
     margin-top: 50px;
     overflow-y: scroll;
-    height: 250px;
-    max-height: 250px;
+    height: 380px;
+    max-height: 380px;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px;
@@ -90,6 +93,7 @@
 
 .bold-message {
     font-weight: bold;
+    font-size: 14px;
 }
 
 .colored-message-red {
@@ -98,6 +102,7 @@
     padding: 2px 4px;
     border-radius: 5px;
     display: inline;
+    font-size: 14px;
 }
 
 .colored-message-green {
@@ -106,6 +111,7 @@
     color: black;
     border-radius: 5px; 
     display: inline;
+    font-size: 14px;
 }
 
 .colored-message-gray {
@@ -114,6 +120,7 @@
     color: black;
     border-radius: 5px; 
     display: inline;
+    font-size: 14px;
 }
 
 .highlight-message {
@@ -121,6 +128,29 @@
     font-weight: 700;
     border-radius: 5px; 
     padding: 2px 4px;
+    font-size: 14px;
+}
+
+.underlined-message {
+    text-decoration:double;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #be72db;
+    padding: 2px 4px;
+    color: black;
+    border-radius: 5px; 
+    display: inline;
+}
+
+.colored-end-game {
+    text-decoration:double;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #727ddb;
+    padding: 2px 4px;
+    color: black;
+    border-radius: 5px; 
+    display: inline;
 }
 
 .button {
@@ -168,10 +198,6 @@
 
 .information-box .information-header  {
     margin-top: 25px;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 0px;
-}
-
-.underlined-message {
-    text-decoration: underline;
 }

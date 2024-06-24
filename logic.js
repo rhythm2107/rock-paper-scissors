@@ -18,6 +18,8 @@ function startGame() {
 
 let p_score = 0;
 let c_score = 0;
+let p_set_score = 0;
+let c_set_score = 0;
 let roundsPlayed = 0;
 let setCount = 1;
 let setMessageDisplayed = false;
@@ -43,12 +45,19 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
+function appendEmptyLine() {
+    var messageDiv = document.querySelector('.game-message')
+    var emptyLine = document.createElement('br');
+    messageDiv.appendChild(emptyLine)
+}
+
 function addGameMessage(message, 
     isImportant = false,
     isColoredRed = false,
     isColoredGreen = false,
     isColoredGray = false,
-    isUnderlined = false) {
+    isColoredPurple = false,
+    isEndGame = false) {
     var messageDiv = document.querySelector('.game-message');
     var newMessage = document.createElement("div");
     var messageContent = document.createElement("span");
@@ -71,8 +80,12 @@ function addGameMessage(message,
         messageContent.classList.add('colored-message-gray')
     }
 
-    if (isUnderlined) {
+    if (isColoredPurple) {
         messageContent.classList.add('underlined-message')
+    }
+
+    if (isEndGame) {
+        messageContent.classList.add('colored-end-game')
     }
 
     // Example of checking content to apply a highlight style
@@ -86,11 +99,8 @@ function addGameMessage(message,
 }
 
 function playGame(choice) {
-    const playerScoreDiv = document.querySelector('.player-score');
-    const computerScoreDiv = document.querySelector('.computer-score');
-
-    if (setCount === 1 && setMessageDisplayed === false) {
-        addGameMessage('-= Set 1 =-')
+    if (setMessageDisplayed === false) {
+        addGameMessage(`-= Set ${setCount} =-`)
         setMessageDisplayed = true
     }
 
@@ -102,12 +112,10 @@ function playGame(choice) {
             addGameMessage(drawMessage, true, false, false, true)
         } else if (result === 'win') {
             p_score++;
-            playerScoreDiv.textContent = `Player Score: ${p_score}`;
             let winMessage = `You won this round! The score is ${p_score} - ${c_score}`
             addGameMessage(winMessage, true, false, true)
         } else {
             c_score++;
-            computerScoreDiv.textContent = `Computer Score: ${c_score}`;
             let loseMessage = `You lost this round! The score is ${p_score} - ${c_score}`
             addGameMessage(loseMessage, true, true)
         }
@@ -118,17 +126,37 @@ function playGame(choice) {
     }
 }
 
+function endGame() {
+    appendEmptyLine()
+    message = 'The battle has come to an end'
+    addGameMessage(message, false, false, false, false, false, true)
+}
+
+
 function evaluateFinalScore() {
-    let victoryMessage = `Congratulations! You won Set ${setCount} with a score of ${p_score} - ${c_score}!`
-    let defeatMessage = `Better luck next time! You lost Set ${setCount} with a score of ${p_score} - ${c_score}!`
-    let tieMessage = `What a tough match! You tied Set ${setCount} with a score of ${p_score} - ${c_score}!`
+    let victoryMessage = `⚔ Congratulations! You won Set ${setCount} with a score of ${p_score} - ${c_score}! ⚔`
+    let defeatMessage = `⚔ Better luck next time! You lost Set ${setCount} with a score of ${p_score} - ${c_score}! ⚔`
+    let tieMessage = `⚔ What a tough match! You tied Set ${setCount} with a score of ${p_score} - ${c_score}! ⚔`
+
+    const playerScoreDiv = document.querySelector('.player-score');
+    const computerScoreDiv = document.querySelector('.computer-score');
 
     if (p_score > c_score) {
         addGameMessage(victoryMessage, false, false, false, false, true)
+        p_set_score++
+        playerScoreDiv.textContent = `Player: ${p_set_score}`;
     } else if (p_score < c_score) {
         addGameMessage(defeatMessage, false, false, false, false, true)
+        c_set_score++
+        computerScoreDiv.textContent = `Computer: ${c_set_score}`;
     } else {
         addGameMessage(tieMessage, false, false, false, false, true)
+    }
+
+    if (setCount === 5) {
+        addGameMessage('this is the end here')
+        endGame()
+        // also here execute function (to be written) that disables buttons and asks for refresh
     }
 
     // Reset global variables and increment setCount to prepare for next set
@@ -137,4 +165,5 @@ function evaluateFinalScore() {
     c_score = 0;
     roundsPlayed = 0;
     setCount++;
+    appendEmptyLine()
 }
