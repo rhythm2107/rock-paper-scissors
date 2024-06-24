@@ -14,18 +14,18 @@ function startGame() {
     scoreboard.style.display = 'flex';
     gameMessage.style.display = 'block';
     buttonContainer.style.display = 'flex';
-
 }
 
 let p_score = 0;
 let c_score = 0;
 let roundsPlayed = 0;
+let setCount = 0;
+let firstSetEnabled = false;
 
 document.querySelector('.fire').addEventListener('click', () => playGame('rock'));
 document.querySelector('.water').addEventListener('click', () => playGame('paper'));
 document.querySelector('.grass').addEventListener('click', () => playGame('scissors'));
 document.querySelector('.start-button').addEventListener('click', () => startGame())
-
 
 function playRound(playerChoice, computerChoice) {
     const winDictionary = {
@@ -43,13 +43,36 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function addGameMessage(message) {
+function addGameMessage(message, isImportant = false, isColoredRed = false, isColoredGreen = false, isColoredGray = false) {
     var messageDiv = document.querySelector('.game-message');
     var newMessage = document.createElement("div");
-    newMessage.textContent = message;
-    newMessage.style.padding = "2px";
-    messageDiv.appendChild(newMessage);
+    var messageContent = document.createElement("span");
+    messageContent.textContent = message;
 
+    // Apply styles based on parameters or content checks
+    if (isImportant) {
+        messageContent.classList.add('bold-message');
+    }
+
+    if (isColoredRed) {
+        messageContent.classList.add('colored-message-red');
+    }
+
+    if (isColoredGreen) {
+        messageContent.classList.add('colored-message-green');
+    }
+    
+    if (isColoredGray) {
+        messageContent.classList.add('colored-message-gray')
+    }
+
+    // Example of checking content to apply a highlight style
+    if (message.includes('Set')) {
+        messageContent.classList.add('highlight-message');
+    }
+
+    newMessage.appendChild(messageContent);
+    messageDiv.appendChild(newMessage);
     messageDiv.scrollTop = messageDiv.scrollHeight;
 }
 
@@ -57,25 +80,30 @@ function playGame(choice) {
     const playerScoreDiv = document.querySelector('.player-score');
     const computerScoreDiv = document.querySelector('.computer-score');
 
-    if (roundsPlayed < 5) {
+    if (setCount === 0 && firstSetEnabled === false) {
+        addGameMessage('-= Set 1 =-')
+        firstSetEnabled = true
+    }
+
+    if (roundsPlayed < 7) {
         let result = playRound(choice, getComputerChoice())
 
         if (result === 'draw') {
             let drawMessage = `A tie! The score is ${p_score} - ${c_score}`
-            addGameMessage(drawMessage)
+            addGameMessage(drawMessage, true, false, false, true)
         } else if (result === 'win') {
             p_score++;
             playerScoreDiv.textContent = `Player Score: ${p_score}`;
             let winMessage = `You won this round! The score is ${p_score} - ${c_score}`
-            addGameMessage(winMessage)
+            addGameMessage(winMessage, true, false, true)
         } else {
             c_score++;
             computerScoreDiv.textContent = `Computer Score: ${c_score}`;
             let loseMessage = `You lost this round! The score is ${p_score} - ${c_score}`
-            addGameMessage(loseMessage)
+            addGameMessage(loseMessage, true, true)
         }
         roundsPlayed++;
-        if (roundsPlayed === 5) {
+        if (roundsPlayed === 7) {
             evaluateFinalScore();
         }
     }
@@ -93,4 +121,7 @@ function evaluateFinalScore() {
     } else {
         addGameMessage(tieMessage)
     }
+
+    addGameMessage('\n')
+    addGameMessage('Round ended with score')
 }

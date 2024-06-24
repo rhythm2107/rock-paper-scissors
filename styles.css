@@ -22,7 +22,9 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;  /* Makes sure the container takes full width */
+    height: 20vh;
     display: none;  /* Initially hidden */
+    margin-top: 50px;
 }
 
 .flex-button {
@@ -32,6 +34,7 @@
     transition: background-color 0.3s;
     flex: 0 0 30%;  /* Ensures each button has equal space without growing or shrinking */
     margin: 0 1%;  /* Gives some space between buttons */
+    max-width: 20%;
 }
 
 .flex-button:hover {
@@ -69,8 +72,8 @@
     text-align: center;
     margin-top: 50px;
     overflow-y: scroll;
-    height: 150px;
-    max-height: 150px;
+    height: 250px;
+    max-height: 250px;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px;
@@ -78,4 +81,93 @@
     margin-left: auto;
     margin-right: auto;
     font-size: 0.9em;
+}
+
+.game-message div {
+    display: block;
+    margin: 7px;
+}
+
+.bold-message {
+    font-weight: bold;
+}
+
+.colored-message-red {
+    color: black;
+    background-color: #ff6347d2;
+    padding: 2px 4px;
+    border-radius: 5px;
+    display: inline;
+}
+
+.colored-message-green {
+    background-color: #90EE90;
+    padding: 2px 4px;
+    color: black;
+    border-radius: 5px; 
+    display: inline;
+}
+
+.colored-message-gray {
+    background-color: #939c93;
+    padding: 2px 4px;
+    color: black;
+    border-radius: 5px; 
+    display: inline;
+}
+
+.highlight-message {
+    background-color: #f3f350;  /* Example: Light Yellow background */
+    font-weight: 700;
+    border-radius: 5px; 
+    padding: 2px 4px;
+}
+
+.button {
+  background-color: buttonface;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  background-color: rgb(249,250,251);
+}
+
+.button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.button:focus-visible {
+  box-shadow: none;
+}
+
+.game-messages-header {
+    font-size: 18px;
+    font-weight: 800;
+    color: black;
+    background-color: #ada7e4d2;
+    padding: 5px 7px;
+    border-radius: 5px;
+}
+
+.information-box .information-header  {
+    margin-top: 25px;
+    font-size: 18px;
+    margin-bottom: 0px;
 }
